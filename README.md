@@ -20,3 +20,8 @@ Python 3, pandas, seaborn, matplotlib, Jupyter Notebook.
 ## Файлы
 
 - `day1.ipynb` — ноутбук первого дня
+
+## День 2 — EDA
+
+Гистограммы, groupby, корреляции. Сильные признаки: `sex`, `pclass`, `fare`.
+План по пропускам: `age` → медиана, `embarked` → мода, `deck` → удалить.
