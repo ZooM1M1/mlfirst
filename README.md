@@ -25,3 +25,11 @@ Python 3, pandas, seaborn, matplotlib, Jupyter Notebook.
 
 Гистограммы, groupby, корреляции. Сильные признаки: `sex`, `pclass`, `fare`.
 План по пропускам: `age` → медиана, `embarked` → мода, `deck` → удалить.
+
+
+## День 3 — ✅
+- Iris, первая модель LogisticRegression
+- train/test split, random_state=42
+- accuracy, confusion matrix
+- Сравнил с DecisionTree
+- Понял fit/predict
