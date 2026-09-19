@@ -40,4 +40,4 @@ Python 3, pandas, seaborn, matplotlib, Jupyter Notebook.
 - One-hot: sex, embarked
 - Первая модель на Титанике: LogisticRegression, accuracy ~80%
 - Интерпретировал веса: sex_female+, sex_male−
-- Confusion matrix: 95/45 правильно, 15/24 ошибки
+- Confusion matrix: 98/46 правильно, 12/23 ошибки
