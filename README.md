@@ -33,3 +33,11 @@ Python 3, pandas, seaborn, matplotlib, Jupyter Notebook.
 - accuracy, confusion matrix
 - Сравнил с DecisionTree
 - Понял fit/predict
+
+## День 4 — ✅
+- Отбор признаков (выкинул дубли: class, who, alive, embark_town, deck)
+- Заполнил пропуски: age → медиана (28), embarked → мода (S)
+- One-hot: sex, embarked
+- Первая модель на Титанике: LogisticRegression, accuracy ~80%
+- Интерпретировал веса: sex_female+, sex_male−
+- Confusion matrix: 95/45 правильно, 15/24 ошибки
