@@ -41,3 +41,10 @@ Python 3, pandas, seaborn, matplotlib, Jupyter Notebook.
 - Первая модель на Титанике: LogisticRegression, accuracy ~80%
 - Интерпретировал веса: sex_female+, sex_male−
 - Confusion matrix: 98/46 правильно, 12/23 ошибки
+
+
+## День 5 — ✅
+- Feature engineering: Title, FamilySize, IsAlone
+- StandardScaler: fit_transform на train, transform на test
+- Accuracy: baseline ~80% → ~82-84%
+- Понял fit_transform vs transform
