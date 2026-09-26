@@ -57,3 +57,10 @@ Python 3, pandas, seaborn, matplotlib, Jupyter Notebook.
 - GridSearchCV: лучший max_depth=4
 - Финальная оценка на отложенном test
 - Понял bias-variance tradeoff
+
+## День 7 — ✅
+- RF и GB, Pipeline, GridSearchCV
+- Обнаружил: один test split обманывает (LR=0.849, GB=0.799)
+- Multi-seed (10 splits): LR=0.834, RF=0.840, GB=0.831 — эквивалентны
+- CV после GridSearch оптимистичен (GB: 0.845 CV → 0.831 test)
+- Вывод: выбираю LR за простоту и устойчивость
