@@ -48,3 +48,12 @@ Python 3, pandas, seaborn, matplotlib, Jupyter Notebook.
 - StandardScaler: fit_transform на train, transform на test
 - Accuracy: baseline ~80% → ~82-84%
 - Понял fit_transform vs transform
+
+
+## День 6 — ✅
+- Кросс-валидация: StratifiedKFold(5), cross_val_score
+- LR: CV ~0.81, std ~0.016
+- DT (depth=5): CV ~0.79
+- GridSearchCV: лучший max_depth=4
+- Финальная оценка на отложенном test
+- Понял bias-variance tradeoff
