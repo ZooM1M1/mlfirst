@@ -64,3 +64,11 @@ Python 3, pandas, seaborn, matplotlib, Jupyter Notebook.
 - Multi-seed (10 splits): LR=0.834, RF=0.840, GB=0.831 — эквивалентны
 - CV после GridSearch оптимистичен (GB: 0.845 CV → 0.831 test)
 - Вывод: выбираю LR за простоту и устойчивость
+
+
+## День 8 — ✅
+- XGBoost, LightGBM
+- Метрики: precision, recall, F1, ROC-AUC
+- Confusion matrix, порог
+- Multi-seed: 5 моделей эквивалентны (0.825–0.840)
+- LR на seed=42 = 0.849, на 10 seed'ах = 0.834
