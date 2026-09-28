@@ -72,3 +72,11 @@ Python 3, pandas, seaborn, matplotlib, Jupyter Notebook.
 - Confusion matrix, порог
 - Multi-seed: 5 моделей эквивалентны (0.825–0.840)
 - LR на seed=42 = 0.849, на 10 seed'ах = 0.834
+
+
+## День 9 — ✅
+- 5 новых фич: Age_bin, Fare_per_person, IsChild, Pclass_x_FamilySize, Fare_relative
+- Multi-seed: Baseline 0.840, Новые 0.838, Отобранные 0.841 — эквивалентны
+- RFE отобрал 10 из 22
+- Новые фичи добавили шум, а не сигнал
+- Берём 10 отобранных: проще, не хуже
