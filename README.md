@@ -80,3 +80,11 @@ Python 3, pandas, seaborn, matplotlib, Jupyter Notebook.
 - RFE отобрал 10 из 22
 - Новые фичи добавили шум, а не сигнал
 - Берём 10 отобранных: проще, не хуже
+
+## День 10 — ✅
+- Модель сохранена через joblib (Pipeline + список колонок)
+- FastAPI + Pydantic-схемы
+- POST /predict с валидацией
+- Тест через Swagger UI и requests
+- Замечено: 0.452 — модель «сомневается», порог 0.5 — не магия
+- Репозиторий: https://github.com/ZooM1M1/titanic-api
