@@ -1,94 +1,39 @@
-## Связанные проекты
-- [titanic-api](https://github.com/ZooM1M1/titanic-api) — FastAPI-сервис для предсказания выживания
+# 🧠 ML Foundations & Production Engineering (mlfirst)
 
+Репозиторий практических работ двухнедельного интенсивного погружения в классическое машинное обучение: от базового исследовательского анализа (EDA) до промышленных бустингов, оптимизации бизнес-порога и деплоя микросервисов.
 
-# mlfirst
+---
 
-Мой первый проект по машинному обучению. Учусь по двухнедельному плану: данные → EDA → модель → оценка.
+## 🗺️ Структура репозитория
 
-## День 1 — Окружение и первый анализ
+| Ноутбук | Тема | Ключевые концепции | Главный результат / Инсайт |
+| :--- | :--- | :--- | :--- |
+| [`day1.ipynb`](./day1.ipynb) | Введение в tabular data | Pandas (`head`, `describe`, `info`), Seaborn | Первичная интуиция по факторам выживания на Titanic |
+| [`day3.ipynb`](./day3.ipynb) | Первая модель (Iris) | `LogisticRegression`, `DecisionTreeClassifier` | Разница между линейной гиперплоскостью и ступенчатыми правилами |
+| [`day4.ipynb`](./day4.ipynb) | Предобработка Titanic | Импьютинг медианой/модой, `pd.get_dummies`, веса LR | `Sex_female` (+), `Sex_male` (-), интерпретация коэффициентов |
+| [`day5.ipynb`](./day5.ipynb) | Feature Engineering & Scaling | `Title` regex, `FamilySize`, `IsAlone`, `StandardScaler` | Защита от Data Leakage: `fit_transform` строго на train! |
+| [`day6.ipynb`](./day6.ipynb) | Валидация & Bias-Variance | `StratifiedKFold`, `cross_val_score`, `GridSearchCV` | Одиночный сплит обманывает; разница $< \sigma$ — это статистический шум |
+| [`day7.ipynb`](./day7.ipynb) | Ансамбли & Пайплайн | `RandomForest`, `GradientBoosting`, `Pipeline` | Бэггинг vs Бустинг; на Титанике ансамбли эквивалентны LR |
+| [`day8.ipynb`](./day8.ipynb) | Промышленные бустинги | `XGBoost`, `LightGBM`, Precision, Recall, F1, ROC-AUC | Порог 0.5 не священен: тюнинг порога максимизирует F1 |
+| [`day 9.ipynb`](./day%209.ipynb) | Отбор признаков (Feature Selection) | `RFE`, полиномиальные фичи, биннинг | Новые фичи не всегда полезны: избыточные признаки внесли шум |
+| [`day11.ipynb`](./day11.ipynb) | Промышленный Pipeline | `ColumnTransformer`, `SimpleImputer`, `OneHotEncoder` | Защита от утечки на фолдах; совместный тюнинг препроцессинга и модели |
+| [`day12.ipynb`](./day12.ipynb) | **Итоговая контрольная (Telco Churn)** | 7043 строки, 46 фичей, LR vs RF vs LGBM vs CatBoost | CatBoost (**0.8506** ROC-AUC); сдвиг порога до 0.35 поднял Recall с 53% до 76% (пик F1 0.6357) |
 
-**Что сделал:**
-- Настроил окружение (Python + venv + Jupyter)
-- Установил pandas, numpy, scikit-learn, matplotlib, seaborn
-- Загрузил датасет Titanic (встроен в seaborn)
-- Посмотрел структуру: 891 строка, 15 колонок, есть пропуски в `age`, `embarked`, `deck`
-- Построил два графика: распределение выживших и зависимость выживания от пола
+---
 
-**Главный вывод:** женщин выживало заметно больше, чем мужчин — классический признак для будущей модели.
+## 💡 Фундаментальные инженерные принципы (ML Mindset)
 
-## Инструменты
+1. **Один `train_test_split` обманывает**: честная оценка устойчивости модели возможна только через K-Fold кросс-валидацию и multi-seed прогоны.
+2. **Бритва Оккама в продакшне**: если сложный ансамбль опережает простую линейную модель на величину, меньшую $\sigma$ — в продакшн идёт линейная модель (дешевле, быстрее, интерпретируема).
+3. **Ловушка порога 0.5**: при дисбалансе классов (например, отток 27%) дефолтный порог 0.5 слеп к половине уходящих клиентов. Сдвиг порога под бизнес-метрики спасает выручку компании.
+4. **Data Leakage — грех №1**: скейлеры, импьютеры и кодировщики должны настраиваться строго на тренировочных фолдах. Инструмент спасения — `Pipeline` + `ColumnTransformer`.
+5. **Деревья и One-Hot Encoding**: раздувание категорий на 40+ бинарных колонок вредит решающим деревьям (требуется мелкая глубина `max_depth=3` или нативные категории в CatBoost).
 
-Python 3, pandas, seaborn, matplotlib, Jupyter Notebook.
+---
 
-## Файлы
-
-- `day1.ipynb` — ноутбук первого дня
-
-## День 2 — EDA
-
-Гистограммы, groupby, корреляции. Сильные признаки: `sex`, `pclass`, `fare`.
-План по пропускам: `age` → медиана, `embarked` → мода, `deck` → удалить.
-
-
-## День 3 — ✅
-- Iris, первая модель LogisticRegression
-- train/test split, random_state=42
-- accuracy, confusion matrix
-- Сравнил с DecisionTree
-- Понял fit/predict
-
-## День 4 — ✅
-- Отбор признаков (выкинул дубли: class, who, alive, embark_town, deck)
-- Заполнил пропуски: age → медиана (28), embarked → мода (S)
-- One-hot: sex, embarked
-- Первая модель на Титанике: LogisticRegression, accuracy ~80%
-- Интерпретировал веса: sex_female+, sex_male−
-- Confusion matrix: 98/46 правильно, 12/23 ошибки
-
-
-## День 5 — ✅
-- Feature engineering: Title, FamilySize, IsAlone
-- StandardScaler: fit_transform на train, transform на test
-- Accuracy: baseline ~80% → ~82-84%
-- Понял fit_transform vs transform
-
-
-## День 6 — ✅
-- Кросс-валидация: StratifiedKFold(5), cross_val_score
-- LR: CV ~0.81, std ~0.016
-- DT (depth=5): CV ~0.79
-- GridSearchCV: лучший max_depth=4
-- Финальная оценка на отложенном test
-- Понял bias-variance tradeoff
-
-## День 7 — ✅
-- RF и GB, Pipeline, GridSearchCV
-- Обнаружил: один test split обманывает (LR=0.849, GB=0.799)
-- Multi-seed (10 splits): LR=0.834, RF=0.840, GB=0.831 — эквивалентны
-- CV после GridSearch оптимистичен (GB: 0.845 CV → 0.831 test)
-- Вывод: выбираю LR за простоту и устойчивость
-
-
-## День 8 — ✅
-- XGBoost, LightGBM
-- Метрики: precision, recall, F1, ROC-AUC
-- Confusion matrix, порог
-- Multi-seed: 5 моделей эквивалентны (0.825–0.840)
-- LR на seed=42 = 0.849, на 10 seed'ах = 0.834
-
-
-## День 9 — ✅
-- 5 новых фич: Age_bin, Fare_per_person, IsChild, Pclass_x_FamilySize, Fare_relative
-- Multi-seed: Baseline 0.840, Новые 0.838, Отобранные 0.841 — эквивалентны
-- RFE отобрал 10 из 22
-- Новые фичи добавили шум, а не сигнал
-- Берём 10 отобранных: проще, не хуже
-
-## День 10 — ✅
-- Модель сохранена через joblib (Pipeline + список колонок)
-- FastAPI + Pydantic-схемы
-- POST /predict с валидацией
-- Тест через Swagger UI и requests
-- Замечено: 0.452 — модель «сомневается», порог 0.5 — не магия
-- Репозиторий: https://github.com/ZooM1M1/titanic-api
+## 🛠️ Стек технологий
+- **Язык**: Python 3.14
+- **Обработка и визуализация**: Pandas, NumPy, Matplotlib, Seaborn
+- **Моделирование**: Scikit-Learn, LightGBM, XGBoost, CatBoost
+- **Валидация и отбор**: StratifiedKFold, GridSearchCV, RFE
+- **Деплой**: см. соседний репозиторий [titanic-api](https://github.com/ZooM1M1/titanic-api) (FastAPI + Uvicorn)
